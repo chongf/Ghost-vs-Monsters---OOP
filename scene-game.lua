@@ -127,7 +127,7 @@ end
 --== START: Loading Section ==--
 
 local function loadCompleteHandler( event )
-	--print("GameScene: loadCompleteHandler")
+	print("GameScene: loadCompleteHandler")
 
 	local f = function()
 		loadScreenHUD:removeEventListener( "complete", loadCompleteHandler )
@@ -136,6 +136,14 @@ local function loadCompleteHandler( event )
 		loadTimer = nil
 
 		startGame()
+		
+		-- Log level starts
+		eventData = {
+			type = "counter",
+			levelName = level_data.info.level
+		}
+
+		analytics.logEvent("Started",eventData);				
 	end
 
 	-- make it so we can see 100% load bar for a little bit
@@ -145,7 +153,7 @@ local function loadCompleteHandler( event )
 end
 
 local function load_complete( percentComplete )
-	--print("GameScene: load_complete")
+	print("GameScene: load_complete")
 	local contentToLoad = "Complete"
 
 	loadScreenHUD:update( { percentComplete, contentToLoad } )
@@ -155,7 +163,7 @@ local function load_complete( percentComplete )
 end
 
 local function load_snailsAndTails( percentComplete )
-	--print("GameScene: load_snailsAndTails")
+	print("GameScene: load_snailsAndTails")
 	local contentToLoad = "Snails and Tails"
 	local contentPercent = 30
 	local loadNext = load_complete
@@ -176,7 +184,7 @@ end
 -- load_gatheringStoneAndWood
 --
 local function load_gatheringStoneAndWood()
-	--print("GameScene: load_gatheringStoneAndWood")
+	print("GameScene: load_gatheringStoneAndWood")
 
 	local contentToLoad = "Gathering Stone and Wood"
 	local contentPercent = 30
@@ -198,7 +206,7 @@ end
 -- load_ghostsAndGhouls
 --
 local function load_ghostsAndGhouls()
-	--print("GameScene: load_ghostsAndGhouls")
+	print("GameScene: load_ghostsAndGhouls")
 
 	local contentToLoad = "Ghosts and Ghouls"
 	local contentPercent = 40
@@ -228,7 +236,7 @@ end
 
 
 startLoadingGame = function()
-	--print("GameScene: startLoadingGame")
+	print("GameScene: startLoadingGame")
 
 	-- attach to loading screen
 	loadScreenHUD = app_token.loadScreenHUD

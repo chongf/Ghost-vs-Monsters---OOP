@@ -38,6 +38,7 @@ local playTween
 local tapSound = audio.loadSound( "assets/sounds/tapsound.wav" )
 
 
+
 --====================================================================--
 -- Main
 --====================================================================--
@@ -75,6 +76,9 @@ local function openFeintButtonTouchHandler( event )
 		audio.play( tapSound )
 
 		print( "OpenFeint Button Pressed." )
+		
+		analytics.logEvent("OpenFeintButtonPressed",{eventGroup="MainMenu"})
+		
 		-- Will display OpenFeint dashboard when uncommented (if OpenFeint was properly initialized in main.lua)
 		--app_token.openfeint.launchDashboard()
 
@@ -104,6 +108,10 @@ local function playButtonTouchHandler( event )
 		levelMgr:show()
 		levelMgr:toFront()
 		levelMgr:addEventListener( "level", levelSelectHandler )
+		
+		-- Playtomic
+		analytics.logEvent("Play")
+		
 	end
 
 	return true

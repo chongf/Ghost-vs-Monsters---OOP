@@ -1,31 +1,26 @@
-The original Ghosts vs. Monsters is a physics-based game template designed for mobile devices. It was created by Jonathan Beebe and Biffy Beebe for Corona SDK, made by Ansca Mobile, http://www.anscamobile.com.
+## Ghosts vs Monsters with Analytics
+Implemented with Playtomic's analytics
 
-This is Ghost vs Monsters re-written in an object-oriented style of programming. It's intended as a example of how one might separate functionality within the application.
+## About Game
+Angry Bird's clone, built with CoronaSDK and a customized Playtomic API in Lua
 
-Many thanks to everyone at Beebe Games and Ansca for making the code publicly available!
+## Integrated so far
+- Custom metrics
+- Level metrics
+- Heatmaps
+- Basic GameVars
 
-### Highlights
+## Metrics being tracked
+- Game Intro Menu : "Play", "More games" and "Source code" button
+- Levels : Begins, Fails, Restarts, Percentage of stars collected
+- Heatmaps : Snap positions of the climbers, in all 15 levels
 
-* Simplification of level data
-* State Pattern for game objects and engine
-* Factory Pattern to create all objects
-* Working load screen which also spans Director Scenes
-* Organization of assets
-* No globals
-* etc, etc
+Tip: after cloning the project, search for all "Playtomic" instances in Game.m, to see how we did it.
+ 
+## LIVE DATA
+View the public [dashboard][1]
 
-### More Information
+## Lastly, have lotsa fun making games!
 
-*This version*
-
-Details about the changes: http://docs.davidmccuskey.com/display/docs/Ghosts+vs+Monsters+Details
-
-*Original version*
-
-Introduction:
-
-* http://developer.anscamobile.com/code/ghosts-vs-monsters
-* http://blog.anscamobile.com/2010/12/ghosts-vs-monsters-open-source-game-in-corona-sdk/
-
-Github: https://github.com/ansca/Ghosts-vs.-Monsters
+[1]: http://playtomic.com/dashboard/overview/5241
 

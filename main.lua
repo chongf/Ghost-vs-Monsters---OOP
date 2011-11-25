@@ -27,6 +27,56 @@ openfeint.init( "App Key Here", "App Secret Here", "Ghosts vs. Monsters", "App I
 
 
 --====================================================================--
+-- Playtomic
+--====================================================================--
+local playtomic = require "Playtomic"
+analytics = {}
+
+function analytics.init( swfid, guid, apikey, debug )
+	playtomic.Log.View( swfid, guid, apikey, "", debug )
+end
+
+function analytics.logEvent( event, eventData )
+	ed = eventData or { }
+	eventType = ed.type or "custom"
+	if event == "Play" then
+		playtomic.Log.Play()
+	elseif eventType == "custom" then
+		print( "Logging custom event ..." )	
+		print( "Event: " .. event)
+		print( "Event Group: " .. ed.eventGroup)
+			
+		playtomic.Log.CustomMetric(event, ed.eventGroup, ed.unique )
+		
+	elseif eventType == "counter" then
+		print( "Logging level counter metric ..." )		
+		print( "Event: " .. event)
+		print( "Level Name: " .. ed.levelName)
+		
+		playtomic.Log.LevelCounterMetric(event, ed.levelName, ed.unique )
+	elseif eventType == "average" then
+		playtomic.Log.LevelAverageMetric(event, ed.levelName, ed.value, ed.unique )
+	elseif eventType == "ranged" then
+		playtomic.Log.LevelRangedMetric(event, ed.levelName, ed.value, ed.unique )
+	elseif eventType == "heatmap" then
+		playtomic.Log.Heatmap(event, ed.mapName, ed.x , ed.y )
+	end
+end
+
+function analytics.freeze()
+	playtomic.Log.Freeze()
+end
+
+function analytics.unFreeze()
+	playtomic.Log.UnFreeze()
+end
+
+function analytics.isFrozen()
+	return playtomic.Log.isFrozen()
+end
+
+
+--====================================================================--
 -- Setup, Constants
 --====================================================================--
 
@@ -94,7 +144,19 @@ local function initialize()
 
 	-- system events
 	Runtime:addEventListener( "system", onSystem )
+	
+	-- Playtomic
+	analytics.init(5241,"a2b1dd20c3e1481b","89ebb4c8f6b644e89e590616d6b3ca")
 
+	--[[
+	eventData2 = {
+		type = "counter",
+		levelName = "Level1"
+	}
+	
+	analytics.logEvent("Started",eventData2);
+	--]]
+		
 end
 
 -- test()
